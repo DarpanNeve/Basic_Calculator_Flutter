@@ -25,18 +25,8 @@ class Calculator extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>[
-                Flexible(
-                  flex: 1,
-                  fit: FlexFit.loose,
-                  child: Text(content, style: TextStyle(fontSize: 20),
-                    textAlign: TextAlign.right,),
-                ),
-                Flexible(
-                  flex: 1,
-                  fit: FlexFit.loose,
-                  child: Text(answerContent.toString(), style: TextStyle(fontSize: 20),
-                    textAlign: TextAlign.right,),
-                ),
+                textview(),
+                textview1(),
                 Expanded(
                   flex: 4,
                   child: GridView.builder(
@@ -48,7 +38,7 @@ class Calculator extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-
+                              Calculate( index: index);
                         },
                         child: Container(
                           decoration: const BoxDecoration(
@@ -73,6 +63,44 @@ class Calculator extends StatelessWidget {
       ),
     );
   }
-
 }
+class textview extends StatefulWidget {
+  const textview({Key? key}) : super(key: key);
+
+  @override
+  State<textview> createState() => _textviewState();
+}
+
+class _textviewState extends State<textview> {
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      flex: 1,
+      fit: FlexFit.loose,
+      child: Text(content, style: TextStyle(fontSize: 20),
+        textAlign: TextAlign.right,),
+    );
+
+  }
+}
+class textview1 extends StatefulWidget {
+  const textview1({Key? key}) : super(key: key);
+
+  @override
+  State<textview1> createState() => _textview1State();
+}
+
+class _textview1State extends State<textview1> {
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      flex: 1,
+      fit: FlexFit.loose,
+      child: Text(answerContent.toString(), style: TextStyle(fontSize: 20),
+        textAlign: TextAlign.right,),
+    );
+  }
+}
+
+
 

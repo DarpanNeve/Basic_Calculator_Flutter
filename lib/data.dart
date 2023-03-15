@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'main.dart';
 import 'package:math_expressions/math_expressions.dart';
 List<String> buttonsKeys = [
   'C', 'ANS', '%', 'DEL',
@@ -12,24 +11,11 @@ List<String> buttonsKeys = [
 String content = "0";
 double answerContent = 0.0;
 
-class MyStatelessWidget extends StatelessWidget {
-  final Function(String) onTextChanged;
-
-  MyStatelessWidget({required this.onTextChanged});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        onTextChanged("New Text");
-      },
-      child: Text("Click me to change text"),
-    );
-  }
-}
 
 class Calculate extends StatefulWidget {
-  const Calculate({Key? key}) : super(key: key);
+  final int index;
+
+  const Calculate({super.key, required this.index});
 
   @override
   State<Calculate> createState() => _CalculateState();
