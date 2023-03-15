@@ -1,34 +1,17 @@
+import 'package:math_expressions/math_expressions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'data.dart';
 
+
+String content = "0";
+double answerContent = 0.0;
 void main() {
   runApp(Calculator());
 }
 
 class Calculator extends StatelessWidget {
   Calculator({Key? key}) : super(key: key);
-  var value = [
-    'C',
-    'AC',
-    '%',
-    '/',
-    '7',
-    '8',
-    '9',
-    'X',
-    '4',
-    '5',
-    '6',
-    '-',
-    '1',
-    '2',
-    '3',
-    '+',
-    '.',
-    '0',
-    '='
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +25,16 @@ class Calculator extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>[
-                const Flexible(
+                Flexible(
                   flex: 1,
                   fit: FlexFit.loose,
-                  child: Text("Data", style: TextStyle(fontSize: 20),
+                  child: Text(content, style: TextStyle(fontSize: 20),
+                    textAlign: TextAlign.right,),
+                ),
+                Flexible(
+                  flex: 1,
+                  fit: FlexFit.loose,
+                  child: Text(answerContent.toString(), style: TextStyle(fontSize: 20),
                     textAlign: TextAlign.right,),
                 ),
                 Expanded(
@@ -59,6 +48,7 @@ class Calculator extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
+
                         },
                         child: Container(
                           decoration: const BoxDecoration(
@@ -66,14 +56,14 @@ class Calculator extends StatelessWidget {
                           margin: const EdgeInsets.all(05),
                           alignment: Alignment.center,
                           constraints: const BoxConstraints(),
-                          child: Text(value[index],
+                          child: Text(buttonsKeys[index],
                               style: const TextStyle(
                                   fontSize: 20,
                                   color: Colors.deepOrangeAccent)),
                         ),
                       );
                     },
-                    itemCount: value.length,
+                    itemCount: buttonsKeys.length,
                   ),
                 )
               ],
@@ -83,4 +73,6 @@ class Calculator extends StatelessWidget {
       ),
     );
   }
+
 }
+
