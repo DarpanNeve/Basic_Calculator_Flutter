@@ -1,31 +1,41 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
+
 List<String> buttonsKeys = [
-  'C', 'ANS', '%', 'DEL',
-  '1', '2', '3', '+',
-  '4', '5', '6', '-',
-  '7', '8', '9', 'x',
-  '.', '0', '=', '/',
+  'C',
+  'ANS',
+  '%',
+  'DEL',
+  '1',
+  '2',
+  '3',
+  '+',
+  '4',
+  '5',
+  '6',
+  '-',
+  '7',
+  '8',
+  '9',
+  'x',
+  '.',
+  '0',
+  '=',
+  '/',
 ];
 String content = "0";
 double answerContent = 0.0;
 
-
 class Calculate extends StatefulWidget {
-  final int index;
-
-  const Calculate({super.key, required this.index});
+  const Calculate({super.key});
 
   @override
   State<Calculate> createState() => _CalculateState();
-
 }
 
 class _CalculateState extends State<Calculate> {
   void onButtonClick(int index) {
     setState(() {
-
       if (isOperator(content[content.length - 1]) &&
           isOperator(buttonsKeys[index])) {
         if (buttonsKeys[index] == content[content.length - 1]) {
@@ -96,9 +106,60 @@ class _CalculateState extends State<Calculate> {
     double eval = exp.evaluate(EvaluationType.REAL, cm);
     answerContent = eval;
   }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Flexible(
+          flex: 1,
+          fit: FlexFit.loose,
+          child: Text(
+            content,
+            style: const TextStyle(fontSize: 20),
+            textAlign: TextAlign.right,
+          ),
+        ),
+        Flexible(
+          flex: 1,
+          fit: FlexFit.loose,
+          child: Text(
+            "$answerContent",
+            style: const TextStyle(fontSize: 20),
+            textAlign: TextAlign.right,
+          ),
+        ),
+        Expanded(
+          flex: 4,
+          child: GridView.builder(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4),
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  onButtonClick(index);
+                  print(content);
+                },
+                child: Container(
+                  decoration: const BoxDecoration(
+                      shape: BoxShape.circle, color: Colors.white),
+                  margin: const EdgeInsets.all(05),
+                  alignment: Alignment.center,
+                  constraints: const BoxConstraints(),
+                  child: Text(buttonsKeys[index],
+                      style: const TextStyle(
+                          fontSize: 20, color: Colors.deepOrangeAccent)),
+                ),
+              );
+            },
+            itemCount: buttonsKeys.length,
+          ),
+        ),
+      ],
+    );
   }
-
 }
