@@ -142,7 +142,6 @@ class _CalculateState extends State<Calculate> {
               return GestureDetector(
                 onTap: () {
                   onButtonClick(index);
-                  print(content);
                 },
                 child: Container(
                   decoration: const BoxDecoration(
