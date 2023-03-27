@@ -111,14 +111,14 @@ class _CalculateState extends State<Calculate> {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[
         Flexible(
           flex: 1,
           fit: FlexFit.loose,
           child: Text(
             content,
-            style: const TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 28),
             textAlign: TextAlign.right,
           ),
         ),
@@ -127,12 +127,12 @@ class _CalculateState extends State<Calculate> {
           fit: FlexFit.loose,
           child: Text(
             "$answerContent",
-            style: const TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 28),
             textAlign: TextAlign.right,
           ),
         ),
         Expanded(
-          flex: 4,
+          flex: 5,
           child: GridView.builder(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,

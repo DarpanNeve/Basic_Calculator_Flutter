@@ -14,6 +14,9 @@ class Calculator extends StatelessWidget {
     return MaterialApp(
       title: "Calculator",
       home: Scaffold(
+        appBar: AppBar(
+          title: const Text("Calculator",textAlign: TextAlign.center),
+        ),
         body: Center(
           child: Container(
             constraints: const BoxConstraints(maxWidth: 500),
